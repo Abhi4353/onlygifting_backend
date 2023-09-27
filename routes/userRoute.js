@@ -5,11 +5,13 @@ const {
   createcampaign,
   createCampaignImage,
   getusers,
-  getcampaigns
+  getcampaigns,
+  getuserdata
 } = require("../controllers/user");
 
 router.post("/signup", signup);
 router.post("/createcampaign", createCampaignImage, createcampaign);
 router.get("/getusers",getusers)
 router.get("/getcampaigns",getcampaigns)
+router.post("/login",getuserdata)
 module.exports = router;

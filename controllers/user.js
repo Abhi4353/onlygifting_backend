@@ -110,3 +110,20 @@ exports.getcampaigns = async(req,res) => {
     res.status(500).send(error)
   }
 }
+
+exports.getuserdata = async(req,res)=>{
+ try{
+  const{Email,Password} = req.body;
+  const check = await User.findOne({Email,Password})
+  if(Email === check?.Email && Password === check?.Password){
+      const requiredtoken = check?.id;
+      res.status(200).send({userData:requiredtoken,role:check.Role})
+  }
+  else{
+      res.status(401).send("Wrong Username or Password")
+  }
+ }
+ catch(error){
+   res.status(500).send("Internal Server Error")
+ }
+}
